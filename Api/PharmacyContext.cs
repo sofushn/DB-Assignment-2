@@ -2,6 +2,6 @@
 
 namespace Api;
 
-public class ReceiptContext: DbContext
+public class PharmacyContext: DbContext
 {
 }
