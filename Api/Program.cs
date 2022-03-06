@@ -1,4 +1,6 @@
-using Api;
+global using Api;
+global using Api.Controllers;
+global using Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
