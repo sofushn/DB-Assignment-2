@@ -1,6 +1,6 @@
 ﻿namespace Api.Models;
 
-public class Prescription
+public class Prescription: EntityWithId
 {
     public int Id { get; set; }
     public string Medication { get; set; }

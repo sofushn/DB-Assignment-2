@@ -1,6 +1,7 @@
 global using Api;
 global using Api.Controllers;
 global using Api.Models;
+global using Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddNpgsql<PharmacyContext>(builder.Configuration.GetConnectionString("PostgresConnection"));
+builder.Services.AddScoped<IAsyncRepository<Patient>, PatientRepository>();
+builder.Services.AddScoped<IAsyncRepository<Doctor>, DoctorRepository>();
+builder.Services.AddScoped<IAsyncRepository<Pharmacy>, PharmacyRepository>();
+builder.Services.AddScoped<IAsyncRepository<Prescription>, PrescriptionRepository>();
 
 var app = builder.Build();
 
