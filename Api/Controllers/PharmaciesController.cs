@@ -30,7 +30,6 @@ public class PharmaciesController : ControllerBase
         => throw new NotImplementedException();
 
     [HttpDelete]
-    [ProducesResponseType(typeof(Pharmacy), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RemovePharmacy(int id)
         => throw new NotImplementedException();
