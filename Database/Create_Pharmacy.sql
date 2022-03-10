@@ -1,6 +1,23 @@
-﻿CREATE TABLE [dbo].[Pharmacy]
+CREATE TABLE Pharmacy
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [Name] NCHAR(10) NULL, 
-    [Location] NCHAR(10) NULL
+	Id INT NOT NULL PRIMARY KEY, 
+    Name NCHAR(255) NOT NULL, 
+    Address1 NCHAR(255) NOT NULL,
+    Address2 NCHAR(100) NULL,
+    City NCHAR(100) NOT NULL,
+    ZipCode CHAR(4) NOT NULL,
+    Country NCHAR(100) NOT NULL,
+    Telephone NCHAR(20) NOT NULL,
+    GeoLat DOUBLE NOT NULL,
+    GeoLong DOUBLE NOT NULL,
+    Website NCHAR(255) NOT NULL
+)
+
+CREATE TABLE Doctor
+(
+    Id INT NOT NULL PRIMARY KEY,
+    Name NCHAR(255) NOT NULL,
+    Email NCHAR(255) NOT NULL,
+    Telephone INT NOT NULL,
+    ClinicName NCHAR(255) NOT NULL
 )
