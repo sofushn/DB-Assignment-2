@@ -5,41 +5,43 @@ CREATE TABLE Address (
     City VARCHAR(100) NOT NULL,
     ZipCode VARCHAR(100) NOT NULL,
     CountryState VARCHAR(100) NOT NULL,
-    Country VARCHAR(100) NOT NULL,
-) 
+    Country VARCHAR(100) NOT NULL
+); 
 
 CREATE TABLE Pharmacy (
     Id INT NOT NULL PRIMARY KEY,
-    Address INT FOREIGN KEY REFERENCES Address(Id),
-    PharmacyName VARCHAR(255) NOT NULL,
-    Telephone VARCHAR(20) NOT NULL,
+    Address INT NOT NULL,
+	PharmacyName VARCHAR(255) NOT NULL,
+    Telephone VARCHAR(30) NOT NULL,
     GeoLat NUMERIC NOT NULL,
     GeoLong NUMERIC NOT NULL,
-    Website VARCHAR(255) NOT NULL
-) 
+    Website VARCHAR(255) NOT NULL,
+	CONSTRAINT FK_PharmacyAddress FOREIGN KEY (Address) REFERENCES Address(Id)
+);
 
 CREATE TABLE Doctor (
     Id INT NOT NULL PRIMARY KEY,
     FirstName VARCHAR(255) NOT NULL,
     LastName VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
-    Telephone INT NOT NULL,
+    Telephone VARCHAR(30) NOT NULL,
     ClinicName VARCHAR(255) NOT NULL
-) 
+);
 
 CREATE TABLE Patient (
     Id INT NOT NULL PRIMARY KEY,
     FirstName VARCHAR(255) NOT NULL,
     LastName VARCHAR(255) NOT NULL,
-    Address INT FOREIGN KEY REFERENCES Address(Id),
-    Telephone VARCHAR(20) NOT NULL,
-    Telephone INT NOT NULL,
-) 
+    Address INT NOT NULL,
+	Email VARCHAR(255) NOT NULL,
+    Telephone VARCHAR(30) NOT NULL,
+	CONSTRAINT FK_PatientAddress FOREIGN KEY (Address) REFERENCES Address(Id)
+); 
 
 CREATE TABLE Perscription (
     Id INT NOT NULL PRIMARY KEY,
-    PatientID INT FOREIGN KEY REFERENCES Patient(Id),
-    DoctorID INT FOREIGN KEY REFERENCES Doctor(Id),
+    PatientID INT NOT NULL,
+    DoctorID INT NOT NULL,
     Medication VARCHAR(255) NOT NULL,
     Dosage VARCHAR(255) NOT NULL,
     DosageForm VARCHAR(255) NOT NULL,
@@ -48,15 +50,17 @@ CREATE TABLE Perscription (
     DoctorSignature VARCHAR(255) NOT NULL,
     IsFulfilled BOOLEAN NOT NULL,
     PerscriptionDate TIMESTAMP NOT NULL,
-    ExpirationDate TIMESTAMP NOT NULL
-) 
+    ExpirationDate TIMESTAMP NOT NULL,
+	CONSTRAINT FK_PerscriptionPatient FOREIGN KEY (PatientID) REFERENCES Patient(Id),
+	CONSTRAINT FK_PerscriptionDoctor FOREIGN KEY (DoctorID) REFERENCES Doctor(Id)
+); 
 
-CREATE AuditLog (
+CREATE TABLE AuditLog (
     Id INT NOT NULL PRIMARY KEY,
     AuditAction VARCHAR(255) NOT NULL,
-    User VARCHAR(255) NOT NULL,
+    UserName VARCHAR(255) NOT NULL,
     AuditTimestamp TIMESTAMP NOT NULL,
     ItemType VARCHAR(255) NOT NULL,
     ItemId INT NOT NULL,
     ItemJson JSON NOT NULL
-)
+);
