@@ -4,7 +4,7 @@ CREATE TABLE Address (
     Address2 VARCHAR(100) NULL,
     City VARCHAR(100) NOT NULL,
     ZipCode VARCHAR(100) NOT NULL,
-    CountryState VARCHAR(100) NOT NULL,
+    CountryState VARCHAR(100) NULL,
     Country VARCHAR(100) NOT NULL
 ); 
 

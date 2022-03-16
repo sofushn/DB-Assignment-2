@@ -10,8 +10,8 @@ public class AuditLog: EntityWithId
     [Column("UserName")]
     public string User { get; set; }
     public string ItemType { get; set; }
-    public int ItemId { get; set; }
-    public string ItemJson { get; set; }
+    public int? ItemId { get; set; }
+    public string? ItemJson { get; set; }
     [Column("AuditTimestamp")]
     public DateTime Timestamp { get; set; }
 }
