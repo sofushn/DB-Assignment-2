@@ -1,6 +1,62 @@
-﻿CREATE TABLE [dbo].[Pharmacy]
-(
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [Name] NCHAR(10) NULL, 
-    [Location] NCHAR(10) NULL
+CREATE TABLE Address (
+    Id INT NOT NULL PRIMARY KEY,
+    Address1 VARCHAR(255) NOT NULL,
+    Address2 VARCHAR(100) NULL,
+    City VARCHAR(100) NOT NULL,
+    ZipCode VARCHAR(100) NOT NULL,
+    CountryState VARCHAR(100) NOT NULL,
+    Country VARCHAR(100) NOT NULL,
+) 
+
+CREATE TABLE Pharmacy (
+    Id INT NOT NULL PRIMARY KEY,
+    Address INT FOREIGN KEY REFERENCES Address(Id),
+    PharmacyName VARCHAR(255) NOT NULL,
+    Telephone VARCHAR(20) NOT NULL,
+    GeoLat NUMERIC NOT NULL,
+    GeoLong NUMERIC NOT NULL,
+    Website VARCHAR(255) NOT NULL
+) 
+
+CREATE TABLE Doctor (
+    Id INT NOT NULL PRIMARY KEY,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Telephone INT NOT NULL,
+    ClinicName VARCHAR(255) NOT NULL
+) 
+
+CREATE TABLE Patient (
+    Id INT NOT NULL PRIMARY KEY,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Address INT FOREIGN KEY REFERENCES Address(Id),
+    Telephone VARCHAR(20) NOT NULL,
+    Telephone INT NOT NULL,
+) 
+
+CREATE TABLE Perscription (
+    Id INT NOT NULL PRIMARY KEY,
+    PatientID INT FOREIGN KEY REFERENCES Patient(Id),
+    DoctorID INT FOREIGN KEY REFERENCES Doctor(Id),
+    Medication VARCHAR(255) NOT NULL,
+    Dosage VARCHAR(255) NOT NULL,
+    DosageForm VARCHAR(255) NOT NULL,
+    NumberOfRefillsLeft INT NOT NULL,
+    DispensingInstructions VARCHAR(255) NOT NULL,
+    DoctorSignature VARCHAR(255) NOT NULL,
+    IsFulfilled BOOLEAN NOT NULL,
+    PerscriptionDate TIMESTAMP NOT NULL,
+    ExpirationDate TIMESTAMP NOT NULL
+) 
+
+CREATE AuditLog (
+    Id INT NOT NULL PRIMARY KEY,
+    AuditAction VARCHAR(255) NOT NULL,
+    User VARCHAR(255) NOT NULL,
+    AuditTimestamp TIMESTAMP NOT NULL,
+    ItemType VARCHAR(255) NOT NULL,
+    ItemId INT NOT NULL,
+    ItemJson JSON NOT NULL
 )
