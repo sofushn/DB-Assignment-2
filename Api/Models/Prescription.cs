@@ -15,6 +15,6 @@ public class Prescription: EntityWithId
 
     public bool HasBeenNotified { get; set; }
 
-    public Patient Patient { get; set; }
-    public Doctor Doctor { get; set; }
+    internal Patient Patient { get; set; }
+    internal Doctor Doctor { get; set; }
 }

@@ -26,7 +26,7 @@ public class AuditLogger : IAuditLogger
             User = user,
             Timestamp = DateTime.Now, 
             ItemId = obj.Id, 
-            ItemAction = obj.GetType().FullName!, 
+            ItemType = obj.GetType().FullName!, 
             ItemJson = JsonSerializer.Serialize(obj)
         };
         _context.AuditLogs.Add(log);
@@ -48,7 +48,7 @@ public class AuditLogger : IAuditLogger
             User = user,
             Timestamp = DateTime.Now,
             ItemId = obj.Id,
-            ItemAction = obj.GetType().FullName!,
+            ItemType = obj.GetType().FullName!,
             ItemJson = JsonSerializer.Serialize(obj)
         };
         await _context.AuditLogs.AddAsync(log);

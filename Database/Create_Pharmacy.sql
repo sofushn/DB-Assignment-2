@@ -10,7 +10,7 @@ CREATE TABLE Address (
 
 CREATE TABLE Pharmacy (
     Id INT NOT NULL PRIMARY KEY,
-    Address INT NOT NULL,
+    AddressID INT NOT NULL,
 	PharmacyName VARCHAR(255) NOT NULL,
     Telephone VARCHAR(30) NOT NULL,
     GeoLat NUMERIC NOT NULL,
@@ -32,9 +32,11 @@ CREATE TABLE Patient (
     Id INT NOT NULL PRIMARY KEY,
     FirstName VARCHAR(255) NOT NULL,
     LastName VARCHAR(255) NOT NULL,
-    Address INT NOT NULL,
+    CprNumber NVARCHAR(10) NOT NULL,
+    AddressID INT NOT NULL,
 	Email VARCHAR(255) NOT NULL,
     Telephone VARCHAR(30) NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
 	CONSTRAINT FK_PatientAddress FOREIGN KEY (Address) REFERENCES Address(Id)
 ); 
 
@@ -51,6 +53,7 @@ CREATE TABLE Perscription (
     IsFulfilled BOOLEAN NOT NULL,
     PerscriptionDate TIMESTAMP NOT NULL,
     ExpirationDate TIMESTAMP NOT NULL,
+    HasBeenNotified BOOLEAN NOT NULL,
 	CONSTRAINT FK_PerscriptionPatient FOREIGN KEY (PatientID) REFERENCES Patient(Id),
 	CONSTRAINT FK_PerscriptionDoctor FOREIGN KEY (DoctorID) REFERENCES Doctor(Id)
 ); 
