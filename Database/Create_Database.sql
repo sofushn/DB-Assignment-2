@@ -64,6 +64,6 @@ CREATE TABLE AuditLog (
     UserName VARCHAR(255) NOT NULL,
     AuditTimestamp TIMESTAMP NOT NULL,
     ItemType VARCHAR(255) NOT NULL,
-    ItemId INT NOT NULL,
-    ItemJson JSON NOT NULL
+    ItemId INT NULL,
+    ItemJson JSON NULL
 );
