@@ -19,13 +19,16 @@ builder.Services.AddScoped<IAsyncRepository<Pharmacy>, PharmacyRepository>();
 builder.Services.AddScoped<IAsyncRepository<Prescription>, PrescriptionRepository>();
 builder.Services.AddScoped<IAuditLogger, AuditLogger>();
 
+builder.Logging.ClearProviders();
+builder.Logging.AddSimpleConsole();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options => options.DefaultModelExpandDepth(-1));
 }
 
 app.UseHttpsRedirection();
