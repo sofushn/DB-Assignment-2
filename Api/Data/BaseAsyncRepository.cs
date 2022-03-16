@@ -19,7 +19,7 @@ public abstract class BaseAsyncRepository<T> : IAsyncRepository<T> where T : cla
     public IAsyncEnumerable<T> GetAll()
         => CustomQuery().AsAsyncEnumerable();
 
-    public IQueryable<T> CustomQuery()
+    public virtual IQueryable<T> CustomQuery()
         => ContextCollection;
 
     public async Task<T> Create(T entity)

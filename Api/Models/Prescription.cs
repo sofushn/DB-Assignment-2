@@ -11,7 +11,9 @@ public class Prescription: EntityWithId
     public byte[] Signature { get; set; }
     public bool IsFulfilled { get; set; }
     public DateTime PerscriptionDate { get; set; }
-    public DateTime ExperationDate { get; set; }
+    public DateTime ExpirationDate { get; set; }
+
+    public bool HasBeenNotified { get; set; }
 
     public Patient Patient { get; set; }
     public Doctor Doctor { get; set; }

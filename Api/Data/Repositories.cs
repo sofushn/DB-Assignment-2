@@ -24,4 +24,7 @@ public class PrescriptionRepository : BaseAsyncRepository<Prescription>
 {
     public PrescriptionRepository(PharmacyContext context) : base(context, context.Prescriptions)
     { }
+
+    public override IQueryable<Prescription> CustomQuery()
+        => ContextCollection.Include(x => x.Patient);
 }

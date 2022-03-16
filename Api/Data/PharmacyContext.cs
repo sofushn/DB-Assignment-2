@@ -17,5 +17,14 @@ public class PharmacyContext: DbContext
             .Entity<AuditLog>()
             .Property(al => al.Action)
             .HasConversion<string>();
+
+        modelBuilder
+            .Entity<Prescription>()
+            .HasOne(x => x.Patient)
+            .WithMany(x => x.Prescriptions);
+
+        modelBuilder
+            .Entity<Prescription>()
+            .HasOne(x => x.Doctor);
     }
 }

@@ -15,4 +15,6 @@ public class Patient: EntityWithId
     public string Country { get; set; }
     public string Telephone { get; set; }
     public string Email { get; set; }
+
+    public ICollection<Prescription> Prescriptions { get; set; }
 }
