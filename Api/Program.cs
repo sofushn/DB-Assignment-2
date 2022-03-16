@@ -17,6 +17,7 @@ builder.Services.AddScoped<IAsyncRepository<Patient>, PatientRepository>();
 builder.Services.AddScoped<IAsyncRepository<Doctor>, DoctorRepository>();
 builder.Services.AddScoped<IAsyncRepository<Pharmacy>, PharmacyRepository>();
 builder.Services.AddScoped<IAsyncRepository<Prescription>, PrescriptionRepository>();
+builder.Services.AddScoped<IAuditLogger, AuditLogger>();
 
 var app = builder.Build();
 
