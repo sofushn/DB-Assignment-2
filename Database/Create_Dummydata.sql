@@ -20,7 +20,7 @@ VALUES (
     'Danmark'
 );
 
-INSERT INTO Pharmacy (Id, Address, PharmacyName, Telephone, GeoLat, GeoLong, Website)
+INSERT INTO Pharmacy (Id, AddressID, PharmacyName, Telephone, GeoLat, GeoLong, Website)
 VALUES ( 
     21,
     12,
@@ -41,17 +41,19 @@ VALUES (
     'De kliniske havesnegle'
 );
 
-INSERT INTO Patient (Id, FirstName, LastName, Address, Email, Telephone)
+INSERT INTO Patient (Id, FirstName, LastName, CprNumber, AddressID, Email, Telephone, Gender)
 VALUES (
     41,
     'Hedning',
     'Havelåge',
+    '1234567890',
     13,
     'Hedningens@havelåge.dk',
-    '42069420'
+    '42069420',
+    'Male'
 );
 
-INSERT INTO Perscription (Id, PatientID, DoctorID, Medication, Dosage, DosageForm, NumberOfRefillsLeft, DispensingInstructions, DoctorSignature, IsFulfilled, PerscriptionDate, ExpirationDate)
+INSERT INTO Perscription (Id, PatientID, DoctorID, Medication, Dosage, DosageForm, NumberOfRefillsLeft, DispensingInstructions, DoctorSignature, IsFulfilled, PerscriptionDate, ExpirationDate, HasBeenNotified)
 VALUES (
     99,
     41,
@@ -62,7 +64,8 @@ VALUES (
     30,
     'Først skal nålen indsættes, hvorefter sangen skal synges',
     'Signered af Sofus Banditten',
-    true,
+    false,
     CURRENT_TIMESTAMP,
-    CURRENT_TIMESTAMP
+    CURRENT_TIMESTAMP,
+    false
 );

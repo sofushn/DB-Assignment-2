@@ -16,7 +16,7 @@ CREATE TABLE Pharmacy (
     GeoLat NUMERIC NOT NULL,
     GeoLong NUMERIC NOT NULL,
     Website VARCHAR(255) NOT NULL,
-	CONSTRAINT FK_PharmacyAddress FOREIGN KEY (Address) REFERENCES Address(Id)
+	CONSTRAINT FK_PharmacyAddress FOREIGN KEY (AddressID) REFERENCES Address(Id)
 );
 
 CREATE TABLE Doctor (
@@ -32,12 +32,12 @@ CREATE TABLE Patient (
     Id INT NOT NULL PRIMARY KEY,
     FirstName VARCHAR(255) NOT NULL,
     LastName VARCHAR(255) NOT NULL,
-    CprNumber NVARCHAR(10) NOT NULL,
+    CprNumber VARCHAR(10) NOT NULL,
     AddressID INT NOT NULL,
 	Email VARCHAR(255) NOT NULL,
     Telephone VARCHAR(30) NOT NULL,
     Gender VARCHAR(10) NOT NULL,
-	CONSTRAINT FK_PatientAddress FOREIGN KEY (Address) REFERENCES Address(Id)
+	CONSTRAINT FK_PatientAddress FOREIGN KEY (AddressID) REFERENCES Address(Id)
 ); 
 
 CREATE TABLE Perscription (
