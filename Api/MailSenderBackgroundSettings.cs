@@ -14,10 +14,9 @@ public class MailSenderBackgroundSettings
 
 public class PositiveIntAttribute : ValidationAttribute
 {
-    public override bool IsValid(object value)
+    public override bool IsValid(object? value)
     {
-        int intVal = (int)value;
-        
+        int intVal = (int)(value ??= 0);
         return intVal >= 0;
     }
 }
